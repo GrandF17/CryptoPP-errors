@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="1.90"/>
+    <errors>
+        <error id="autoVariables" severity="error" msg="Address of local auto-variable assigned to a function parameter." verbose="Dangerous assignment - the function parameter is assigned the address of a local auto-variable. Local auto-variables are reserved from the stack which is freed when the function ends. So the pointer to a local variable is invalid after the function ends." cwe="562"/>
+        <error id="returnAddressOfAutoVariable" severity="error" msg="Address of an auto-variable returned." verbose="Address of an auto-variable returned." cwe="562"/>
+        <error id="returnLocalVariable" severity="error" msg="Pointer to local array variable returned." verbose="Pointer to local array variable returned." cwe="562"/>
+        <error id="returnReference" severity="error" msg="Reference to local variable returned." verbose="Reference to local variable returned." cwe="562"/>
+        <error id="danglingReference" severity="error" msg="Non-local reference variable &apos;x&apos; to local variable &apos;y&apos;" verbose="Non-local reference variable &apos;x&apos; to local variable &apos;y&apos;" cwe="562"/>
+        <error id="returnTempReference" severity="error" msg="Reference to temporary returned." verbose="Reference to temporary returned." cwe="562"/>
+        <error id="autovarInvalidDeallocation" severity="error" msg="Deallocation of an auto-variable results in undefined behaviour." verbose="The deallocation of an auto-variable results in undefined behaviour. You should only free memory that has been allocated dynamically." cwe="590"/>
+        <error id="returnAddressOfFunctionParameter" severity="error" msg="Address of function parameter &apos;parameter&apos; returned." verbose="Address of the function parameter &apos;parameter&apos; becomes invalid after the function exits because function parameters are stored on the stack which is freed when the function exits. Thus the returned value is invalid." cwe="562">
+            <symbol>parameter</symbol>
+        </error>
+        <error id="returnDanglingLifetime" severity="error" msg="Returning object that will be invalid when returning." verbose="Returning object that will be invalid when returning." cwe="562"/>
+        <error id="invalidLifetime" severity="error" msg="Using object that is out of scope." verbose="Using object that is out of scope." cwe="562"/>
+        <error id="danglingLifetime" severity="error" msg="Non-local variable &apos;x&apos; will use object." verbose="Non-local variable &apos;x&apos; will use object." cwe="562"/>
+        <error id="danglingTemporaryLifetime" severity="error" msg="Using object to temporary." verbose="Using object to temporary." cwe="562"/>
+        <error id="assignBoolToPointer" severity="error" msg="Boolean value assigned to pointer." verbose="Boolean value assigned to pointer." cwe="587"/>
+        <error id="pointerArithBool" severity="error" msg="Converting pointer arithmetic result to bool. The bool is always true unless there is undefined behaviour." verbose="Converting pointer arithmetic result to bool. The boolean result is always true unless there is pointer arithmetic overflow, and overflow is undefined behaviour. Probably a dereference is forgotten." cwe="571"/>
+        <error id="boostForeachError" severity="error" msg="BOOST_FOREACH caches the end() iterator. It&apos;s undefined behavior if you modify the container inside." verbose="BOOST_FOREACH caches the end() iterator. It&apos;s undefined behavior if you modify the container inside." cwe="664"/>
+        <error id="arrayIndexOutOfBounds" severity="error" msg="Array &apos;arr[16]&apos; accessed at index 16, which is out of bounds." verbose="Array &apos;arr[16]&apos; accessed at index 16, which is out of bounds." cwe="788"/>
+        <error id="negativeIndex" severity="error" msg="Negative array index" verbose="Negative array index" cwe="786"/>
+        <error id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds: buf" verbose="Buffer is accessed out of bounds: buf" cwe="788"/>
+        <error id="objectIndex" severity="error" msg="The address of local variable &apos;&apos; is accessed at non-zero index." verbose="The address of local variable &apos;&apos; is accessed at non-zero index." cwe="758"/>
+        <error id="invalidFunctionArg" severity="error" msg="Invalid func_name() argument nr 1. The value is 0 or 1 (boolean) but the valid values are &apos;1:4&apos;." verbose="Invalid func_name() argument nr 1. The value is 0 or 1 (boolean) but the valid values are &apos;1:4&apos;." cwe="628">
+            <symbol>func_name</symbol>
+        </error>
+        <error id="invalidFunctionArgBool" severity="error" msg="Invalid func_name() argument nr 1. A non-boolean value is required." verbose="Invalid func_name() argument nr 1. A non-boolean value is required." cwe="628">
+            <symbol>func_name</symbol>
+        </error>
+        <error id="invalidFunctionArgStr" severity="error" msg="Invalid func_name() argument nr 1. A nul-terminated string is required." verbose="Invalid func_name() argument nr 1. A nul-terminated string is required." cwe="628">
+            <symbol>func_name</symbol>
+        </error>
+        <error id="memsetClass" severity="error" msg="Using &apos;memfunc&apos; on class that contains a classname." verbose="Using &apos;memfunc&apos; on class that contains a classname is unsafe, because constructor, destructor and copy operator calls are omitted. These are necessary for this non-POD type to ensure that a valid object is created." cwe="762">
+            <symbol>memfunc</symbol>
+            <symbol>classname</symbol>
+        </error>
+        <error id="memsetClassReference" severity="error" msg="Using &apos;memfunc&apos; on class that contains a reference." verbose="Using &apos;memfunc&apos; on class that contains a reference." cwe="665">
+            <symbol>memfunc</symbol>
+        </error>
+        <error id="mallocOnClassError" severity="error" msg="Memory for class instance allocated with malloc(), but class contains a std::string." verbose="Memory for class instance allocated with malloc(), but class a std::string. This is unsafe, since no constructor is called and class members remain uninitialized. Consider using &apos;new&apos; instead." cwe="665">
+            <symbol>malloc</symbol>
+            <symbol>std::string</symbol>
+        </error>
+        <error id="virtualDestructor" severity="error" msg="Class &apos;Base&apos; which is inherited by class &apos;Derived&apos; does not have a virtual destructor." verbose="Class &apos;Base&apos; which is inherited by class &apos;Derived&apos; does not have a virtual destructor. If you destroy instances of the derived class by deleting a pointer that points to the base class, only the destructor of the base class is executed. Thus, dynamic memory that is managed by the derived class could leak. This can be avoided by adding a virtual destructor to the base class." cwe="404">
+            <symbol>Base</symbol>
+            <symbol>Derived</symbol>
+        </error>
+        <error id="operatorEqMissingReturnStatement" severity="error" msg="No &apos;return&apos; statement in non-void function causes undefined behavior." verbose="No &apos;return&apos; statement in non-void function causes undefined behavior." cwe="398"/>
+        <error id="selfInitialization" severity="error" msg="Member variable &apos;var&apos; is initialized by itself." verbose="Member variable &apos;var&apos; is initialized by itself." cwe="665">
+            <symbol>var</symbol>
+        </error>
+        <error id="throwInNoexceptFunction" severity="error" msg="Exception thrown in function declared not to throw exceptions." verbose="Exception thrown in function declared not to throw exceptions." cwe="398"/>
+        <error id="coutCerrMisusage" severity="error" msg="Invalid usage of output stream: &apos;&lt;&lt; std::cout&apos;." verbose="Invalid usage of output stream: &apos;&lt;&lt; std::cout&apos;." cwe="398"/>
+        <error id="fflushOnInputStream" severity="portability" msg="fflush() called on input stream &apos;stdin&apos; may result in undefined behaviour on non-linux systems." verbose="fflush() called on input stream &apos;stdin&apos; may result in undefined behaviour on non-linux systems." cwe="398"/>
+        <error id="IOWithoutPositioning" severity="error" msg="Read and write operations without a call to a positioning function (fseek, fsetpos or rewind) or fflush in between result in undefined behaviour." verbose="Read and write operations without a call to a positioning function (fseek, fsetpos or rewind) or fflush in between result in undefined behaviour." cwe="664"/>
+        <error id="readWriteOnlyFile" severity="error" msg="Read operation on a file that was opened only for writing." verbose="Read operation on a file that was opened only for writing." cwe="664"/>
+        <error id="writeReadOnlyFile" severity="error" msg="Write operation on a file that was opened only for reading." verbose="Write operation on a file that was opened only for reading." cwe="664"/>
+        <error id="useClosedFile" severity="error" msg="Used file that is not opened." verbose="Used file that is not opened." cwe="910"/>
+        <error id="wrongPrintfScanfArgNum" severity="error" msg="printf format string requires 3 parameters but only 2 are given." verbose="printf format string requires 3 parameters but only 2 are given." cwe="685"/>
+        <error id="invalidScanfFormatWidth" severity="error" msg="Width 5 given in format string (no. 10) is larger than destination buffer &apos;[0]&apos;, use %-1s to prevent overflowing it." verbose="Width 5 given in format string (no. 10) is larger than destination buffer &apos;[0]&apos;, use %-1s to prevent overflowing it." cwe="687"/>
+        <error id="deallocret" severity="error" msg="Returning/dereferencing &apos;p&apos; after it is deallocated / released" verbose="Returning/dereferencing &apos;p&apos; after it is deallocated / released" cwe="672">
+            <symbol>p</symbol>
+        </error>
+        <error id="doubleFree" severity="error" msg="Memory pointed to by &apos;varname&apos; is freed twice." verbose="Memory pointed to by &apos;varname&apos; is freed twice." cwe="415">
+            <symbol>varname</symbol>
+        </error>
+        <error id="leakNoVarFunctionCall" severity="error" msg="Allocation with funcName, funcName doesn&apos;t release it." verbose="Allocation with funcName, funcName doesn&apos;t release it." cwe="772"/>
+        <error id="leakReturnValNotUsed" severity="error" msg="Return value of allocation function &apos;funcName&apos; is not stored." verbose="Return value of allocation function &apos;funcName&apos; is not stored." cwe="771">
+            <symbol>funcName</symbol>
+        </error>
+        <error id="memleak" severity="error" msg="Memory leak: varname" verbose="Memory leak: varname" cwe="401">
+            <symbol>varname</symbol>
+        </error>
+        <error id="resourceLeak" severity="error" msg="Resource leak: varname" verbose="Resource leak: varname" cwe="775">
+            <symbol>varname</symbol>
+        </error>
+        <error id="deallocDealloc" severity="error" msg="Deallocating a deallocated pointer: varname" verbose="Deallocating a deallocated pointer: varname" cwe="415">
+            <symbol>varname</symbol>
+        </error>
+        <error id="deallocuse" severity="error" msg="Dereferencing &apos;varname&apos; after it is deallocated / released" verbose="Dereferencing &apos;varname&apos; after it is deallocated / released" cwe="416">
+            <symbol>varname</symbol>
+        </error>
+        <error id="mismatchSize" severity="error" msg="The allocated size sz is not a multiple of the underlying type&apos;s size." verbose="The allocated size sz is not a multiple of the underlying type&apos;s size." cwe="131"/>
+        <error id="mismatchAllocDealloc" severity="error" msg="Mismatching allocation and deallocation: varname" verbose="Mismatching allocation and deallocation: varname" cwe="762">
+            <symbol>varname</symbol>
+        </error>
+        <error id="memleakOnRealloc" severity="error" msg="Common realloc mistake: &apos;varname&apos; nulled but not freed upon failure" verbose="Common realloc mistake: &apos;varname&apos; nulled but not freed upon failure" cwe="401">
+            <symbol>varname</symbol>
+        </error>
+        <error id="nullPointer" severity="error" msg="Null pointer dereference" verbose="Null pointer dereference" cwe="476"/>
+        <error id="nullPointerArithmetic" severity="error" msg="Pointer arithmetic with NULL pointer." verbose="Pointer arithmetic with NULL pointer." cwe="682"/>
+        <error id="nullPointerArithmeticRedundantCheck" severity="warning" msg="Either the condition is redundant or there is pointer arithmetic with NULL pointer." verbose="Either the condition is redundant or there is pointer arithmetic with NULL pointer." cwe="682"/>
+        <error id="zerodiv" severity="error" msg="Division by zero." verbose="Division by zero." cwe="369"/>
+        <error id="zerodivcond" severity="error" msg="Either the condition is redundant or there is division by zero." verbose="Either the condition is redundant or there is division by zero." cwe="369"/>
+        <error id="shiftNegative" severity="error" msg="Shifting by a negative value is undefined behaviour" verbose="Shifting by a negative value is undefined behaviour" cwe="758"/>
+        <error id="wrongPipeParameterSize" severity="error" msg="Buffer &apos;varname&apos; must have size of 2 integers if used as parameter of pipe()." verbose="The pipe()/pipe2() system command takes an argument, which is an array of exactly two integers.\012The variable &apos;varname&apos; is an array of size dimension, which does not match." cwe="686">
+            <symbol>varname</symbol>
+        </error>
+        <error id="raceAfterInterlockedDecrement" severity="error" msg="Race condition: non-interlocked access after InterlockedDecrement(). Use InterlockedDecrement() return value instead." verbose="Race condition: non-interlocked access after InterlockedDecrement(). Use InterlockedDecrement() return value instead." cwe="362"/>
+        <error id="invalidFree" severity="error" msg="Mismatching address is freed. The address you get from malloc() must be freed without offset." verbose="Mismatching address is freed. The address you get from malloc() must be freed without offset."/>
+        <error id="unknownEvaluationOrder" severity="error" msg="Expression &apos;x = x++;&apos; depends on order of evaluation of side effects" verbose="Expression &apos;x = x++;&apos; depends on order of evaluation of side effects" cwe="768"/>
+        <error id="comparePointers" severity="error" msg="Comparing pointers that point to different objects" verbose="Comparing pointers that point to different objects" cwe="570"/>
+        <error id="containerOutOfBounds" severity="error" msg="Out of bounds access in expression &apos;container[x]&apos;" verbose="Out of bounds access in expression &apos;container[x]&apos;" cwe="398">
+            <symbol>container</symbol>
+        </error>
+        <error id="invalidIterator1" severity="error" msg="Invalid iterator: iterator" verbose="Invalid iterator: iterator" cwe="664">
+            <symbol>iterator</symbol>
+        </error>
+        <error id="iterators1" severity="error" msg="Same iterator is used with different containers &apos;container1&apos; and &apos;container2&apos;." verbose="Same iterator is used with different containers &apos;container1&apos; and &apos;container2&apos;." cwe="664">
+            <symbol>container1</symbol>
+            <symbol>container2</symbol>
+        </error>
+        <error id="iterators2" severity="error" msg="Same iterator is used with different containers &apos;container0&apos; and &apos;container1&apos;." verbose="Same iterator is used with different containers &apos;container0&apos; and &apos;container1&apos;." cwe="664">
+            <symbol>container0</symbol>
+            <symbol>container1</symbol>
+        </error>
+        <error id="iterators3" severity="error" msg="Same iterator is used with containers &apos;container&apos; that are defined in different scopes." verbose="Same iterator is used with containers &apos;container&apos; that are defined in different scopes." cwe="664">
+            <symbol>container</symbol>
+        </error>
+        <error id="iteratorsCmp1" severity="error" msg="Comparison of iterators from containers &apos;container1&apos; and &apos;container2&apos;." verbose="Comparison of iterators from containers &apos;container1&apos; and &apos;container2&apos;." cwe="664">
+            <symbol>container1</symbol>
+            <symbol>container2</symbol>
+        </error>
+        <error id="iteratorsCmp2" severity="error" msg="Comparison of iterators from containers &apos;container&apos; that are defined in different scopes." verbose="Comparison of iterators from containers &apos;container&apos; that are defined in different scopes." cwe="664">
+            <symbol>container</symbol>
+        </error>
+        <error id="invalidContainer" severity="error" msg="Using object that may be invalid." verbose="Using object that may be invalid." cwe="664"/>
+        <error id="mismatchingContainers" severity="error" msg="Iterators of different containers are used together." verbose="Iterators of different containers are used together." cwe="664"/>
+        <error id="mismatchingContainerExpression" severity="warning" msg="Iterators to containers from different expressions &apos;v1&apos; and &apos;v2&apos; are used together." verbose="Iterators to containers from different expressions &apos;v1&apos; and &apos;v2&apos; are used together." cwe="664"/>
+        <error id="sameIteratorExpression" severity="style" msg="Same iterators expression are used for algorithm." verbose="Same iterators expression are used for algorithm." cwe="664"/>
+        <error id="eraseDereference" severity="error" msg="Invalid iterator &apos;iter&apos; used." verbose="The iterator &apos;iter&apos; is invalid before being assigned. Dereferencing or comparing it with another iterator is invalid operation." cwe="664">
+            <symbol>iter</symbol>
+        </error>
+        <error id="stlOutOfBounds" severity="error" msg="When i==foo.size(), foo[i] is out of bounds." verbose="When i==foo.size(), foo[i] is out of bounds." cwe="788">
+            <symbol>foo</symbol>
+        </error>
+        <error id="negativeContainerIndex" severity="error" msg="Array index -1 is out of bounds." verbose="Array index -1 is out of bounds." cwe="786"/>
+        <error id="stlBoundaries" severity="error" msg="Dangerous comparison using operator&lt; on iterator." verbose="Iterator compared with operator&lt;. This is dangerous since the order of items in the container is not guaranteed. One should use operator!= instead to compare iterators." cwe="664"/>
+        <error id="stlcstr" severity="error" msg="Dangerous usage of c_str(). The value returned by c_str() is invalid after this call." verbose="Dangerous usage of c_str(). The c_str() return value is only valid until its string is deleted." cwe="664"/>
+        <error id="stlcstrthrow" severity="error" msg="Dangerous usage of c_str(). The value returned by c_str() is invalid after throwing exception." verbose="Dangerous usage of c_str(). The string is destroyed after the c_str() call so the thrown pointer is invalid."/>
+        <error id="stringLiteralWrite" severity="error" msg="Modifying string literal directly or indirectly is undefined behaviour." verbose="Modifying string literal directly or indirectly is undefined behaviour." cwe="758"/>
+        <error id="sprintfOverlappingData" severity="error" msg="Undefined behavior: Variable &apos;varname&apos; is used as parameter and destination in s[n]printf()." verbose="The variable &apos;varname&apos; is used both as a parameter and as destination in s[n]printf(). The origin and destination buffers overlap. Quote from glibc (C-library) documentation (http://www.gnu.org/software/libc/manual/html_mono/libc.html#Formatted-Output-Functions): &quot;If copying takes place between objects that overlap as a result of a call to sprintf() or snprintf(), the results are undefined.&quot;" cwe="628">
+            <symbol>varname</symbol>
+        </error>
+        <error id="strPlusChar" severity="error" msg="Unusual pointer arithmetic. A value of type &apos;char&apos; is added to a string literal." verbose="Unusual pointer arithmetic. A value of type &apos;char&apos; is added to a string literal." cwe="665"/>
+        <error id="shiftTooManyBits" severity="error" msg="Shifting 32-bit value by 40 bits is undefined behaviour" verbose="Shifting 32-bit value by 40 bits is undefined behaviour" cwe="758"/>
+        <error id="shiftTooManyBitsSigned" severity="error" msg="Shifting signed 32-bit value by 31 bits is implementation-defined behaviour" verbose="Shifting signed 32-bit value by 31 bits is implementation-defined behaviour" cwe="758"/>
+        <error id="integerOverflow" severity="error" msg="Signed integer overflow for expression &apos;&apos;." verbose="Signed integer overflow for expression &apos;&apos;." cwe="190"/>
+        <error id="signConversion" severity="warning" msg="Expression &apos;var&apos; can have a negative value. That is converted to an unsigned value and used in an unsigned calculation." verbose="Expression &apos;var&apos; can have a negative value. That is converted to an unsigned value and used in an unsigned calculation." cwe="195"/>
+        <error id="truncLongCastAssignment" severity="style" msg="int result is assigned to long variable. If the variable is long to avoid loss of information, then you have loss of information." verbose="int result is assigned to long variable. If the variable is long to avoid loss of information, then there is loss of information. To avoid loss of information you must cast a calculation operand to long, for example &apos;l = a * b;&apos; =&gt; &apos;l = (long)a * b;&apos;." cwe="197"/>
+        <error id="truncLongCastReturn" severity="style" msg="int result is returned as long value. If the return value is long to avoid loss of information, then you have loss of information." verbose="int result is returned as long value. If the return value is long to avoid loss of information, then there is loss of information. To avoid loss of information you must cast a calculation operand to long, for example &apos;return a*b;&apos; =&gt; &apos;return (long)a*b&apos;." cwe="197"/>
+        <error id="floatConversionOverflow" severity="error" msg="Undefined behaviour: float (1e+100) to integer conversion overflow." verbose="Undefined behaviour: float (1e+100) to integer conversion overflow." cwe="190"/>
+        <error id="uninitstring" severity="error" msg="Dangerous usage of &apos;varname&apos; (strncpy doesn&apos;t always null-terminate it)." verbose="Dangerous usage of &apos;varname&apos; (strncpy doesn&apos;t always null-terminate it)." cwe="676">
+            <symbol>varname</symbol>
+        </error>
+        <error id="uninitdata" severity="error" msg="Memory is allocated but not initialized: varname" verbose="Memory is allocated but not initialized: varname" cwe="908">
+            <symbol>varname</symbol>
+        </error>
+        <error id="uninitvar" severity="error" msg="Uninitialized variable: varname" verbose="Uninitialized variable: varname" cwe="908">
+            <symbol>varname</symbol>
+        </error>
+        <error id="uninitStructMember" severity="error" msg="Uninitialized struct member: a.b" verbose="Uninitialized struct member: a.b" cwe="908">
+            <symbol>a.b</symbol>
+        </error>
+        <error id="va_start_referencePassed" severity="error" msg="Using reference &apos;arg1&apos; as parameter for va_start() results in undefined behaviour." verbose="Using reference &apos;arg1&apos; as parameter for va_start() results in undefined behaviour." cwe="758"/>
+        <error id="va_end_missing" severity="error" msg="va_list &apos;vl&apos; was opened but not closed by va_end()." verbose="va_list &apos;vl&apos; was opened but not closed by va_end()." cwe="664"/>
+        <error id="va_list_usedBeforeStarted" severity="error" msg="va_list &apos;vl&apos; used before va_start() was called." verbose="va_list &apos;vl&apos; used before va_start() was called." cwe="664"/>
+        <error id="va_start_subsequentCalls" severity="error" msg="va_start() or va_copy() called subsequently on &apos;vl&apos; without va_end() in between." verbose="va_start() or va_copy() called subsequently on &apos;vl&apos; without va_end() in between." cwe="664"/>
+
+        <error id="preprocessorErrorDirective" severity="error" msg="#error message" verbose="#error message"/>
+    </erros>
+</results>
